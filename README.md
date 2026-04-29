@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Paul Inkasso MVP
 
-## Getting Started
+Ein schlankes MVP-Skeleton fuer einen DSGVO- und AI-Act-bewussten Voice Agent im Inkasso-Kontext.
 
-First, run the development server:
+## Stack
+
+- Next.js + TypeScript + Tailwind
+- Vercel API Routes als Business-Backend
+- Vapi vorbereitet fuer Orchestration
+- Twilio BYO Number als Telefonie-Pfad
+- Deepgram Nova-3 fuer STT
+- GPT-4.1 mini als Default-LLM
+- Azure de-DE-FlorianMultilingualNeural als Default-TTS
+- Stripe vorbereitet fuer Zahlungslinks
+- Resend vorbereitet fuer Zahlungslink-E-Mails
+- Supabase/Postgres vorbereitet fuer Auth, Sessions und Persistenz
+
+## Lokal starten
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Dann im Browser oeffnen:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment
 
-## Learn More
+Lege eine `.env.local` an und kopiere die Werte aus `.env.example`.
 
-To learn more about Next.js, take a look at the following resources:
+```env
+VAPI_API_KEY=
+VAPI_PHONE_NUMBER_ID=
+VAPI_ASSISTANT_ID=
+VAPI_TRANSCRIBER_LANGUAGE=de
+VAPI_LLM_MODEL=gpt-4.1-mini
+VAPI_AZURE_VOICE_ID=de-DE-FlorianMultilingualNeural
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+TWILIO_ACCOUNT_SID=
+TWILIO_AUTH_TOKEN=
+TWILIO_REGION=ie1
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
+SUPABASE_URL=
+SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
 
-## Deploy on Vercel
+STRIPE_SECRET_KEY=
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+RESEND_API_KEY=
+EMAIL_FROM=
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Ohne Keys laufen die API-Routen im Mock-Modus.
+
+## MVP-Flows
+
+1. Faelle per CSV einfuegen oder Demo-Faelle nutzen.
+2. Agent-Guidelines im Tab `Guidelines` bearbeiten.
+3. Im `Agent Lab` Test-Call oder Zahlungslink-API ausloesen.
+4. Ergebnisse, Timeline und Compliance-Regeln im Admin pruefen.
+
+## Naechste Schritte
+
+- Supabase Schema und Persistenz anschliessen.
+- Supabase Auth-Seiten fuer Login/Logout ergaenzen.
+- Vapi Assistant mit Tool Calls konfigurieren.
+- Twilio-Nummer in Vapi importieren und `VAPI_PHONE_NUMBER_ID` setzen.
+- Vapi Webhook Payloads in `call_runs` und `audit_events` speichern.
+- Stripe Checkout Session oder Payment Link final implementieren.
+- Resend E-Mail im Review-and-Send-Flow aktivieren.
+- Auth und Rollen fuer echte Daten aktivieren.
