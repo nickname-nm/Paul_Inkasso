@@ -9,6 +9,10 @@ export async function updateSession(request: NextRequest) {
     request,
   });
 
+  if (!supabaseUrl || !supabaseKey) {
+    return supabaseResponse;
+  }
+
   const supabase = createServerClient(supabaseUrl!, supabaseKey!, {
     cookies: {
       getAll() {
