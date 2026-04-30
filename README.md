@@ -65,9 +65,20 @@ Ohne Keys laufen die API-Routen im Mock-Modus.
 3. Im `Agent Lab` Test-Call oder Zahlungslink-API ausloesen.
 4. Ergebnisse, Timeline und Compliance-Regeln im Admin pruefen.
 
+## Supabase
+
+Das erste Datenmodell liegt in:
+
+```text
+supabase/schema.sql
+```
+
+Die API-Route `/api/cases` liest und schreibt spaeter echte Faelle in Supabase. Solange die Tabellen
+noch nicht angelegt sind oder Auth fehlt, liefert sie Demo-Daten als Fallback.
+
 ## Naechste Schritte
 
-- Supabase Schema und Persistenz anschliessen.
+- `supabase/schema.sql` im Supabase SQL Editor ausfuehren.
 - Supabase Auth-Seiten fuer Login/Logout ergaenzen.
 - Vapi Assistant mit Tool Calls konfigurieren.
 - Twilio-Nummer in Vapi importieren und `VAPI_PHONE_NUMBER_ID` setzen.
